@@ -1,3 +1,4 @@
+import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
@@ -45,7 +46,8 @@ import { LoginComponent } from './login/login.component';
     NgbModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
