@@ -1,4 +1,5 @@
-import { auth } from 'firebase/app';
+import { UserService } from './user.service';
+import { auth, User } from 'firebase/app';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
@@ -12,7 +13,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private user: UserService
   ) {
     this.user$ = afAuth.authState;
   }
@@ -20,7 +22,8 @@ export class AuthService {
   login() {
     const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => {
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(x => {
+      this.user.save(x.user);
       this.router.navigateByUrl(localStorage.getItem('returnUrl'));
     });
   }
