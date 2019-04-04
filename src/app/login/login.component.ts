@@ -13,4 +13,3 @@ export class LoginComponent {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 }
- 
