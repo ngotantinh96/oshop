@@ -22,4 +22,8 @@ export class ProductService {
         })
       );
   }
+
+  get(id) {
+    return this.db.object("products/" + id).valueChanges();
+  }
 }
