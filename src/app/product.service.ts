@@ -27,7 +27,11 @@ export class ProductService {
     return this.db.object('products/' + id).valueChanges();
   }
 
-  update(productId, product) {
-    this.db.object('products/' + productId).update(product);
+  update(id, product) {
+    this.db.object('products/' + id).update(product);
+  }
+
+  delete(id) {
+    this.db.object('products/' + id).remove();
   }
 }
