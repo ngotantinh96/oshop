@@ -1,3 +1,4 @@
+import { CategoryService } from './../category.service';
 import { ProductService } from './../product.service';
 import { Component } from '@angular/core';
 
@@ -8,8 +9,10 @@ import { Component } from '@angular/core';
 })
 export class ProductsComponent {
   products$;
+  categories$;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private categoryService: CategoryService) {
     this.products$ = this.productService.getAll();
+    this.categories$ = this.categoryService.getAll();
   }
 }
