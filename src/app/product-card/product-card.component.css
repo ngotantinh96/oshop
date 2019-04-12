@@ -1,0 +1,5 @@
+.product-image {
+  height: 17rem;
+  object-fit: cover;
+  object-position: center;
+}
