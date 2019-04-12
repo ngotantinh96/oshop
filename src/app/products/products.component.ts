@@ -1,5 +1,4 @@
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from './../category.service';
 import { ProductService } from './../product.service';
 import { Component } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
@@ -12,20 +11,18 @@ import { switchMap } from 'rxjs/operators';
 export class ProductsComponent {
   products: any[] = [];
   filteredProducts: any[] = [];
-  categories$;
   category: string;
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
-    private categoryService: CategoryService
+    private productService: ProductService
   ) {
     this.productService
       .getAll()
       .pipe(
         switchMap(products => {
           this.products = products;
-          return route.queryParamMap;
+          return this.route.queryParamMap;
         })
       )
       .subscribe(x => {
@@ -35,7 +32,5 @@ export class ProductsComponent {
           ? this.products.filter(p => p.category === this.category)
           : this.products;
       });
-
-    this.categories$ = this.categoryService.getAll();
   }
 }
