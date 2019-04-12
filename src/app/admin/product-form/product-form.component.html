@@ -84,21 +84,12 @@
         </div>
       </div>
       <button class="btn btn-primary mr-2">Save</button>
-      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">
+        Delete
+      </button>
     </form>
   </div>
   <div class="col-md-6">
-    <div *ngIf="product.title" class="card" style="width: 25rem;">
-      <img
-        [src]="product.imageUrl"
-        *ngIf="product.imageUrl"
-        class="card-img-top"
-        alt="Product images"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.price | currency: "USD" }}</p>
-      </div>
-    </div>
+    <app-product-card [product]="product"></app-product-card>
   </div>
 </div>
