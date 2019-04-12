@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
 export class ProductCardComponent {
   @Input('product'.toString()) product: any;
   @Input('showActions'.toString()) showActions: false;
+  @Input('numberProducts'.toString()) numberProducts: 0;
   constructor() {}
 }

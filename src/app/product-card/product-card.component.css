@@ -3,3 +3,7 @@
   object-fit: cover;
   object-position: center;
 }
+
+.card-product {
+  width: 25em;
+}

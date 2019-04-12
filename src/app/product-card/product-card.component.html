@@ -1,4 +1,4 @@
-<div *ngIf="product.title" class="card mb-3">
+<div *ngIf="product.title" class="card mb-3" [class.card-product]="numberProducts === 1">
   <img
     *ngIf="product.imageUrl"
     [src]="product.imageUrl"
