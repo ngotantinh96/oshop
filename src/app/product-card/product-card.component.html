@@ -1,4 +1,8 @@
-<div *ngIf="product.title" class="card mb-3" [class.card-product]="numberProducts === 1">
+<div
+  *ngIf="product.title"
+  class="card mb-3"
+  [class.card-product]="numberProducts === 1"
+>
   <img
     *ngIf="product.imageUrl"
     [src]="product.imageUrl"
@@ -7,9 +11,15 @@
   />
   <div class="card-body">
     <h5 class="card-title">{{ product.title }}</h5>
-    <p class="card-text">{{ product.price | currency: "USD" }}</p>
+    <p class="card-text">{{ product.price | currency: 'USD' }}</p>
   </div>
   <div class="card-footer p-0">
-      <a *ngIf="showActions" href="#" class="btn btn-primary d-block">Add to cart</a>
+    <button
+      (click)="addToCart(product)"
+      *ngIf="showActions"
+      class="btn btn-primary d-block w-100"
+    >
+      Add to cart
+    </button>
   </div>
 </div>
