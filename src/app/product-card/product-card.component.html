@@ -13,13 +13,10 @@
     <h5 class="card-title">{{ product.title }}</h5>
     <p class="card-text">{{ product.price | currency: 'USD' }}</p>
   </div>
-  <div class="card-footer p-0">
-    <button
-      (click)="addToCart(product)"
-      *ngIf="showActions"
-      class="btn btn-primary d-block w-100"
-    >
+  <div *ngIf="showActions" class="card-footer p-0">
+    <button (click)="addToCart(product)" class="btn btn-primary d-block w-100">
       Add to cart
     </button>
+    <div>{{ getQuantity() }}</div>
   </div>
 </div>

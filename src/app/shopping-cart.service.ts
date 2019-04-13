@@ -1,5 +1,5 @@
 import { take } from 'rxjs/operators';
-import { AngularFireDatabase, snapshotChanges } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -14,7 +14,12 @@ export class ShoppingCartService {
     });
   }
 
-  private async getOrCreateCart() {
+  async getShoppingCart() {
+    const cartId = await this.getOrCreateCart();
+    return this.db.object('/shopping-carts/' + cartId).snapshotChanges();
+  }
+
+  private async getOrCreateCart(): Promise<string> {
     const cartId = localStorage.getItem('cartId');
     if (!cartId) {
       const result = await this.create();
