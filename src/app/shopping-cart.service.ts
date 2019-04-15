@@ -34,6 +34,14 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: any) {
+    this.updateItemQuantity(product, 1);
+  }
+
+  removeFromCart(product: any) {
+    this.updateItemQuantity(product, -1);
+  }
+
+  private async updateItemQuantity(product: any, change: number) {
     const cartId = await this.getOrCreateCart();
     const item$ = this.getItem(cartId, product.key);
 
@@ -44,7 +52,8 @@ export class ShoppingCartService {
         const existsItem = item.payload.val();
         item$.update({
           product,
-          quantity: (existsItem ? existsItem['quantity'.toString()] : 0) + 1
+          quantity:
+            (existsItem ? existsItem['quantity'.toString()] : 0) + change
         });
       });
   }

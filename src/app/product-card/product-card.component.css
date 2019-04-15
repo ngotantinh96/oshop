@@ -7,3 +7,7 @@
 .card-product {
   width: 25em;
 }
+
+.card-footer button {
+  cursor: pointer;
+}

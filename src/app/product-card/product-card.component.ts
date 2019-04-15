@@ -13,8 +13,12 @@ export class ProductCardComponent {
   @Input('shoppingCart'.toString()) shoppingCart: any;
   constructor(private cartService: ShoppingCartService) {}
 
-  addToCart(product: any) {
-    this.cartService.addToCart(product);
+  addToCart() {
+    this.cartService.addToCart(this.product);
+  }
+
+  removeFromCart() {
+    this.cartService.removeFromCart(this.product);
   }
 
   getQuantity() {
