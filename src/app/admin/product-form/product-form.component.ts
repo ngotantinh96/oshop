@@ -12,7 +12,7 @@ import { take } from 'rxjs/operators';
 export class ProductFormComponent implements OnInit {
   categories$;
   // tslint:disable-next-line: ban-types
-  product: Object = new Object();
+  product: any = [];
   productId;
   constructor(
     private router: Router,
