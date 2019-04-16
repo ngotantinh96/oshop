@@ -39,16 +39,16 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: any) {
-    this.updateItemQuantity(product, 1);
+    this.updateItem(product, 1);
   }
 
   removeFromCart(product: any) {
-    this.updateItemQuantity(product, -1);
+    this.updateItem(product, -1);
   }
 
-  private async updateItemQuantity(product: any, change: number) {
+  private async updateItem(product: any, change: number) {
     const cartId = await this.getOrCreateCart();
-    const item$ = this.getItem(cartId, product.key);
+    const item$ = this.getItem(cartId, product.key || product.$key);
 
     item$
       .snapshotChanges()
@@ -56,7 +56,9 @@ export class ShoppingCartService {
       .subscribe(item => {
         const existsItem = item.payload.val();
         item$.update({
-          product,
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
           quantity:
             (existsItem ? existsItem['quantity'.toString()] : 0) + change
         });

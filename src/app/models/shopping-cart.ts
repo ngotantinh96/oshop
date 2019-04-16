@@ -1,26 +1,32 @@
-import { Product } from './product';
 import { ShoppingCartItem } from './shopping-cart-item';
 
 export class ShoppingCart {
   items: ShoppingCartItem[] = [];
 
   constructor(public itemsMap: { [productId: string]: ShoppingCartItem }) {
+    this.itemsMap = itemsMap || {};
     // tslint:disable-next-line: forin
     for (const productId in itemsMap) {
       const item = itemsMap[productId];
-      this.items.push(new ShoppingCartItem(item.product, item.quantity));
+      const x = new ShoppingCartItem();
+      Object.assign(x, item);
+      x.$key = productId;
+      this.items.push(x);
     }
   }
 
   getQuantity(product: any) {
-    const item = this.itemsMap[product.key];
+    const productId = product.$key || product.key;
+    const item = this.itemsMap[productId];
     return item ? item.quantity : 0;
   }
 
   get totalPrice() {
     let sum = 0;
-// tslint:disable-next-line: forin
-    for (const productId in this.items) { sum += this.items[productId].totalPrice; }
+    // tslint:disable-next-line: forin
+    for (const productId in this.items) {
+      sum += this.items[productId].totalPrice;
+    }
     return sum;
   }
 

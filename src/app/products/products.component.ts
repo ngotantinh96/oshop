@@ -1,3 +1,4 @@
+import { ShoppingCart } from './../models/shopping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../product.service';
@@ -14,7 +15,7 @@ export class ProductsComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
   category: string;
-  cart: any;
+  cart$;
   subscription: Subscription;
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +42,7 @@ export class ProductsComponent implements OnInit {
   async ngOnInit() {
     this.subscription = (await this.shoppingCartService.getShoppingCart()).subscribe(
       cart => {
-        this.cart = cart;
+        this.cart$ = cart;
       }
     );
   }
