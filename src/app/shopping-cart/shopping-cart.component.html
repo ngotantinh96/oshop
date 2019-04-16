@@ -19,14 +19,14 @@
               class="thumbnail"
             ></div>
           </td> 
-          <td>{{ item.title }}</td>
-          <td>
+          <td class="align-middle">{{ item.title }}</td>
+          <td class="align-middle">
             <app-product-quantity
               [product]="item"
               [shoppingCart]="cart"
             ></app-product-quantity>
           </td>
-          <td class="text-right">{{ item.totalPrice | currency: "USD" }}</td>
+          <td class="text-right align-middle">{{ item.totalPrice | currency: "USD" }}</td>
         </tr>
       </tbody>
       <tfoot>
