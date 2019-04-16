@@ -1,35 +1,45 @@
 <div class="row justify-content-center" *ngIf="(cart$ | async) as cart">
-  <div class="col-9 align-self-start"><h1>Shopping Cart</h1></div>
-  <div class="col-9">
-      <p>You have {{ cart.totalItemsCount }} items in your shopping cart.</p>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th class="text-center" style="width: 15rem;" >Quantiy</th>
-            <th class="text-right" style="width: 13rem;">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of cart.items">
-            <td>{{ item.title }}</td>
-            <td>
-              <app-product-quantity
-                [product]="item"
-                [shoppingCart]="cart"
-              ></app-product-quantity>
-            </td>
-            <td class="text-right">{{ item.totalPrice | currency: "USD" }}</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th></th>
-            <th></th>
-            <th class="text-right">{{ cart.totalPrice | currency: "USD" }}</th>
-          </tr>
-        </tfoot>
-      </table>
-      <button class="btn btn-danger sm" (click)="clearCart()">Clear Shopping Cart</button>
+  <div class="col-10 align-self-start"><h1>Shopping Cart</h1></div>
+  <div class="col-10">
+    <p>You have {{ cart.totalItemsCount }} items in your shopping cart.</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Product</th>
+          <th class="text-center" style="width: 15rem;">Quantiy</th>
+          <th class="text-right" style="width: 13rem;">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart.items">
+          <td>
+            <div
+              [style.backgroundImage]="'url(' + item.imageUrl + ')'"
+              class="thumbnail"
+            ></div>
+          </td> 
+          <td>{{ item.title }}</td>
+          <td>
+            <app-product-quantity
+              [product]="item"
+              [shoppingCart]="cart"
+            ></app-product-quantity>
+          </td>
+          <td class="text-right">{{ item.totalPrice | currency: "USD" }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th class="text-right">{{ cart.totalPrice | currency: "USD" }}</th>
+        </tr>
+      </tfoot>
+    </table>
+    <button class="btn btn-danger sm" (click)="clearCart()">
+      Clear Shopping Cart
+    </button>
   </div>
 </div>
