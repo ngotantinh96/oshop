@@ -13,7 +13,7 @@ import { Order } from 'shared/models/order';
 })
 export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input('cart'.toString()) cart: ShoppingCart;
-  shipping = {};
+  shipping: any = {};
   userSubscription: Subscription;
   userId: string;
 
